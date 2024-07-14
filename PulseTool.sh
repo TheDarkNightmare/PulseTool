@@ -25,8 +25,11 @@ install_multimedia() {
     echo -e "\e[31m|                                                 |\e[0m"
     echo -e "\e[31m╰─────────────────────────────────────────────────╯\e[0m"
 
+    echo "[----------------- OBS Studio + Addons ----------------]"
+    yay -S obs-studio-browser obs-vkcapture obs-vaapi obs-cmd lib32-obs-vkcapture
+
     echo -e "[\e[31m----------------- Core Packages ----------------\e[0m]"
-    sudo pacman -S --noconfirm firefox discord vlc kdenlive elisa thunderbird
+    sudo pacman -S --noconfirm firefox discord kdenlive elisa thunderbird
 
     # Install yay if not installed
     install_yay
@@ -34,8 +37,7 @@ install_multimedia() {
     echo "[----------------- Discord Addons ----------------]"
     yay -S --noconfirm betterdiscord-installer
 
-    echo "[----------------- OBS Studio + Addons ----------------]"
-    yay -S --noconfirm obs-studio-browser obs-vkcapture obs-vaapi obs-cmd lib32-obs-vkcapture
+
 
     echo "[----------------- Video Capture Fix ----------------]"
     sudo pacman -S --noconfirm xwaylandvideobridge
@@ -112,6 +114,9 @@ install_game() {
 
     echo "[----------------- Compiling Wine TKG  ----------------]"
     makepkg -si --noconfirm
+
+    cd ..
+    rm -rf wine-tkg-git
 
     # Print a message indicating that the installation is complete
     echo "Installation complete."
