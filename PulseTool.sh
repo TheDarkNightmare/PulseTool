@@ -52,20 +52,20 @@ install_multimedia() {
 
 # Function to display menu and handle package selection
 select_packages() {
-    local packages=("" "󱤵 • Multimedia" " • Cannon MG4250" "󰆍 • FastFetch" "󰊗 • GamePackage")
+    local packages=("󱤵 • Multimedia" " • Cannon MG4250" "󰆍 • FastFetch" "󰊗 • GamePackage")
     local selected=()
 
     # Loop to display menu
     while true; do
         clear
-        echo "╭──────────────────────────────────────────────╮"
-        echo "|                                              |"
-        echo "|       PulseTools Installer - ArchLinux       |"
-        echo "|       Version 1.01 - TheDarkNightmare        |"
-        echo "|                                              |"
-        echo "|          S         |"
-        echo "|                                              |"
-        echo "╰──────────────────────────────────────────────╯"
+        echo "╭─────────────────────────────────────────────────╮"
+        echo "|                                                 |"
+        echo "|       PulseTools Installer - ArchLinux          |"
+        echo "|       Version 1.01 - TheDarkNightmare           |"
+        echo "|                                                 |"
+        echo "|  https://github.com/TheDarkNightmare/PulseTool  |"
+        echo "|                                                 |"
+        echo "╰─────────────────────────────────────────────────╯"
         echo "Select packages to install (use space to toggle selection, Enter to install):"
         for ((i=1; i<${#packages[@]}; i++)); do
             echo "$i) ${packages[$i]}"
@@ -80,7 +80,7 @@ select_packages() {
             *) 
                 selected=()
                 for num in $input; do
-                    if [[ $num =~ ^[1-9]+$ && $num -ge 0 && $num -lt ${#packages[@]} ]]; then
+                    if [[ $num =~ ^[1-4]+$ && $num -ge 1 && $num -lt ${#packages[@]} ]]; then
                         selected+=("${packages[$num]}")
                     else
                         echo "Invalid selection: $num"
@@ -93,7 +93,7 @@ select_packages() {
         if [[ ${#selected[@]} -gt 0 ]]; then
             for pkg in "${selected[@]}"; do
                 case $pkg in
-                    "Multimedia") install_multimedia ;;
+                    "󱤵 • Multimedia") install_multimedia ;;
                     # Add other packages as needed
                     *) echo "Package '$pkg' installation not implemented." ;;
                 esac
@@ -102,6 +102,3 @@ select_packages() {
         fi
     done
 }
-
-# Main script logic
-select_packages
