@@ -1,5 +1,8 @@
 # PulseTool
 
+![t](https://github.com/user-attachments/assets/2aee9f4d-f6fd-49cf-846c-3894af246888)
+
+
 PulseTool is OpenSource script in bash for Arch Linux (KDE) users.
 Its a installer in CLI for fresh installations of Linux on KDE Desktop.
 
