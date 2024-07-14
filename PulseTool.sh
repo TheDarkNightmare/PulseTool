@@ -76,6 +76,8 @@ install_cannon() {
 
     echo "Installation complete. Please add your printer via KDE Printer Settings"
 }
+
+# Function to install Game packages
 install_game() {
     echo "╭─────────────────────────────────────────────────╮"
     echo "|                                                 |"
@@ -107,7 +109,6 @@ install_game() {
     echo "[----------------- WineTKG ----------------]"
     git clone https://github.com/Frogging-Family/wine-tkg-git
     cd wine-tkg-git
-    cd wine-tkg-git
 
     echo "[----------------- Compiling Wine TKG  ----------------]"
     makepkg -si --noconfirm
@@ -115,6 +116,8 @@ install_game() {
     # Print a message indicating that the installation is complete
     echo "Installation complete."
 }
+
+# Function to install FastFetch
 install_fastfetch() {
     echo "╭─────────────────────────────────────────────────╮"
     echo "|                                                 |"
@@ -124,7 +127,7 @@ install_fastfetch() {
     echo "|                                                 |"
     echo "╰─────────────────────────────────────────────────╯"
 
-    # Update the package database and install CUPS (Common Unix Printing System) and Gutenprint
+    # Update the package database and install FastFetch
     sudo pacman -Syu --noconfirm fastfetch
 
     # Generate default config in ~/.config/fastfetch
@@ -197,13 +200,14 @@ install_fastfetch() {
                 echo "Added '$COMMAND' to ~/.bashrc"
             else
                 echo "'$COMMAND' is already in ~/.bashrc"
-                fi
+            fi
+
             echo "Installation complete. Please check your fastfetch settings"
         else
             echo "Exiting without making changes."
-        exit 1
+            exit 1
+        fi
     fi
-fi
 }
 
 # Function to display menu and handle package selection
@@ -241,7 +245,7 @@ select_packages() {
                 done
                 ;;
         esac
-󱤵 • Multimedia" " • Cannon MG4250" "󰆍 • FastFetch" "󰊗 • GamePackage")
+
         if [[ ${#selected[@]} -gt 0 ]]; then
             for pkg in "${selected[@]}"; do
                 case $pkg in
