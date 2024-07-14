@@ -67,8 +67,8 @@ select_packages() {
         echo "|                                                 |"
         echo "╰─────────────────────────────────────────────────╯"
         echo "Select packages to install (use space to toggle selection, Enter to install):"
-        for ((i=1; i<${#packages[@]}; i++)); do
-            echo "$i) ${packages[$i]}"
+        for ((i=0; i<${#packages[@]}; i++)); do
+            echo "$((i + 1))) ${packages[$i]}"
         done
 
         # Prompt user for selection
@@ -80,8 +80,8 @@ select_packages() {
             *) 
                 selected=()
                 for num in $input; do
-                    if [[ $num =~ ^[1-4]+$ && $num -ge 1 && $num -lt ${#packages[@]} ]]; then
-                        selected+=("${packages[$num]}")
+                    if [[ $num =~ ^[1-4]$ && $num -ge 1 && $num -le ${#packages[@]} ]]; then
+                        selected+=("${packages[$((num - 1))]}")
                     else
                         echo "Invalid selection: $num"
                     fi
@@ -102,3 +102,6 @@ select_packages() {
         fi
     done
 }
+
+# Main script logic
+select_packages
