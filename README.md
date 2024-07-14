@@ -1,6 +1,6 @@
 # PulseTool
+![pulse](https://github.com/user-attachments/assets/e77ecb02-27d5-4b56-8c6b-18688cc2a11e)
 
-![t](https://github.com/user-attachments/assets/2aee9f4d-f6fd-49cf-846c-3894af246888)
 
 
 PulseTool is OpenSource script in bash for Arch Linux (KDE) users.
