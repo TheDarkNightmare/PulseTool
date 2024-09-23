@@ -4,7 +4,7 @@
 install_yay() {
     if ! command -v yay &> /dev/null; then
         echo -e "                       [\e[31m----------------- System Checking ----------------\e[0m]"
-        echo "yay is not installed. Installing yay ..."
+        echo "Yay package is not installed. Installing yay for AUR ..."
         sudo pacman -S --needed --noconfirm base-devel
         git clone https://aur.archlinux.org/yay.git
         cd yay

@@ -18,9 +18,13 @@ install_game() {
     # Install Steam Client Standalone 
     # Fix 0.1 Installing Steam with noconfirm attribute break Steam package and game performace due to auto install lib32-files dependecies auto not reflecting current video driver installed.
     # After fix user can choose lib32 package according to his Video Driver eg. (AMD , NVIDIA , INTEL).
+    echo "Installing Steam Client for Arch Linux ...."
     sudo pacman -S steam && echo "Steam package installed."
 
-    # Install Lutris
+   
+    echo "Installing additional packages ......."
+
+     # Install Lutris
     sudo pacman -S --noconfirm steam lutris && echo "Lutris packages installed."
 
     echo "                       [----------------- ProtonUP-QT ----------------]"
@@ -31,7 +35,9 @@ install_game() {
     # Install MangoHud for 64 lib + 32 lib + Goverlay Settings 
     # Installing a MangoHud will not automatic set to showing a statistic in system
     # Adding new option to Enable ManhoHud Globaly without depend of Goverlay Program.
-    yay -S --noconfirm goverlay mangohud lib32-mangohud && echo "MangoHud and Goverlay packages installed."
+    echo "Installing MangoHud and Goverlay packages ...."
+
+    yay -S --noconfirm goverlay mangohud lib32-mangohud
 
     # MangoHud globaly switch for user system settings.
     echo 'export MANGOHUD=1' >> ~/.bashrc
@@ -50,8 +56,23 @@ install_game() {
     echo "                       [----------------- Compiling Wine TKG  ----------------]"
     makepkg -si --noconfirm && echo "Wine-TKG package installed."
 
+
+    # Cleaning downloaded files for extra space
     cd ..
     rm -rf wine-tkg-git
+
+    # Booting wine with first setup and creating Mono Instance
+    echo "Prepearing WINE for user ......"
+    sleep 5
+
+    winecfg
+
+    # Installing prefix and wine settings handler GUI / Winetricks
+    echo "Installing Winetricks GUI control for wine prefixes...."
+    sudo pacman -S --noconfirm winetricks
+
+
+
 
     # Print a message indicating that the installation is complete
     echo "                       Installation complete."

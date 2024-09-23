@@ -13,15 +13,20 @@ install_cannon() {
     install_yay
 
     echo "                       [----------------- Core Packages ----------------]"
+
+    echo "Installing Cups and Gutenprint for basic Support..."
     sudo pacman -Syu --noconfirm cups gutenprint
 
     echo "                       [----------------- CUPS BJNP ----------------]"
     yay -S --noconfirm cups-bjnp
 
     echo "                       [----------------- Enable and Start CUPS ----------------]"
+    echo "Enabling CUPS for Linux User System ...."
     sudo systemctl enable --now cups
 
     echo "                       [----------------- Install KDE Settings Printer ----------"
+
+    echo "Installing KDE Printer Applet ....."
     sudo pacman -Syu --noconfirm system-config-printer
 
     echo "                       Installation complete. Please add your printer via KDE Printer Settings"
