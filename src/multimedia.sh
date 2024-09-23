@@ -14,13 +14,10 @@ install_multimedia() {
     install_yay
 
     echo "                       [----------------- OBS Studio + Addons ----------------]"
-    yay -S obs-studio-browser obs-vkcapture obs-vaapi obs-cmd lib32-obs-vkcapture
+    yay -S obs-studio-tytan652 obs-vkcapture obs-vaapi obs-cmd lib32-obs-vkcapture
 
     echo -e "                       [\e[31m----------------- Core Packages ----------------\e[0m]"
-    sudo pacman -S --noconfirm firefox discord kdenlive elisa thunderbird
-
-    echo "                       [----------------- Discord Addons ----------------]"
-    yay -S --noconfirm betterdiscord-installer
+    sudo pacman -S --noconfirm firefox discord kdenlive thunderbird
 
     echo "                       [----------------- Video Capture Fix ----------------]"
     sudo pacman -S --noconfirm xwaylandvideobridge

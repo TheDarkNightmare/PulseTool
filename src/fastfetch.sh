@@ -51,6 +51,8 @@ install_fastfetch() {
         read -p "                       Would you like to create the directory and download the files? (y/n): " choice
         if [ "$choice" = "y" ]; then
             mkdir -p "$HOME/KWinScripts/"
+            # Adding Layer of user-space rights to folder (FIX)
+            sudo chown -R $USER "$HOME/KWinScripts"
             cd "$HOME/KWinScripts/"
 
             sleep 5
