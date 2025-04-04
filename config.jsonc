@@ -1,0 +1,106 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "type": "kitty",
+        "source": "~/.config/fastfetch/ARC2.png",
+        "width": 26,
+        "height": 14
+    },
+    "display": {
+        "separator": " >  ",
+        "color": {
+            "separator": "red"
+        }
+    },
+    "modules": [
+        {
+            "format": "{#1}{#keys}╭───────────────────────────────────────────────────────────────────────────╮\u001b[76D",
+            "type": "title"
+        },
+        {
+            "format": "│\u001b[75C│\u001b[75D{#33}•  PC     >  {6}{7}{8} ",
+            "type": "title"
+        },
+        {
+            "format": "{#1}{#keys}│                                                                           │",
+            "type": "custom"
+        },
+        {
+            "key": "│\u001b[75C│\u001b[75D{#33}•  OS     ",
+            "type": "os"
+        },
+        {
+            "key": "│\u001b[75C│\u001b[75D{#33}• 🛠 Kernel ",
+            "type": "kernel"
+        },
+        {
+            "key": "│\u001b[75C│\u001b[75D{#33}• ⏲ Uptime ",
+            "type": "uptime"
+        },
+        {
+            "format": "{#1}{#keys}│                                                                           │",
+            "type": "custom"
+        },
+        {
+            "key": "│\u001b[75C│\u001b[75D{#35}• \ueb7f DE     ",
+            "type": "de"
+        },
+        {
+            "type": "packages",
+            "key": "│\u001b[75C│\u001b[75D{#35}•  Package"
+        },
+        {
+            "key": "│\u001b[75C│\u001b[75D{#35}•  Term   ",
+            "type": "terminal"
+        },
+        {
+            "key": "│\u001b[75C│\u001b[75D{#35}•  Shell  ",
+            "type": "Shell"
+        },
+        {
+            "format": "{#1}{#keys}│                                                                           │",
+            "type": "custom"
+        },
+        {
+            "key": "│\u001b[75C│\u001b[75D{#31}•  CPU    ",
+            "type": "cpu",
+            "showPeCoreCount": true,
+        },
+        {
+            "key": "│\u001b[75C│\u001b[75D{#31}•  GPU    ",
+            "type": "gpu"
+        },
+        {
+            "key": "│\u001b[75C│\u001b[75D{#31}• 󰍹 Res    ",
+            "type": "display",
+            "compactType": "original-with-refresh-rate"
+        },
+        {
+            "format": "{#1}{#keys}│                                                                           │",
+            "type": "custom"
+        },
+        {
+            "key": "│\u001b[75C│\u001b[75D{#32}•  Disk   ",
+            "type": "disk",
+            "folders": "/"
+        },
+        {
+            "key": "│\u001b[75C│\u001b[75D{#32}•  Memory ",
+            "type": "memory"
+        },
+        {
+            "format": "{#1}{#keys}├───────────────────────────────────────────────────────────────────────────┤",
+            "type": "custom"
+        },
+        {
+            "key": "│\u001b[75C│\u001b[75D{#38} colors   ",
+            "type": "colors",
+            "symbol": "circle"
+        },
+        {
+            "format": "{#1}{#keys}╰───────────────────────────────────────────────────────────────────────────╯",
+            "type": "custom"
+        }
+
+    ]
+}
