@@ -12,7 +12,7 @@ install_game() {
     echo -e "                       \e[33m╰─────────────────────────────────────────────────╯\e[0m"
 
     # Install yay if not installed
-    install_yay
+    install_aur_systeminit
 
     echo "                       [----------------- Core Packages ----------------]"
     # Install Steam Client Standalone 
@@ -29,7 +29,7 @@ install_game() {
 
     echo "                       [----------------- ProtonUP-QT ----------------]"
     # Install ProtonUP-QT allowing user to install Proton/Wine wersions of runners for there games and Programs like (Lutris, Bottles, Steam)
-    yay -S --noconfirm protonup-qt && echo "ProtonUP-QT package installed."
+    paru -S --noconfirm protonup-qt && echo "ProtonUP-QT package installed."
 
     echo "                       [----------------- Vulkan Game Monitor Statistics  ----------------]"
     # Install MangoHud for 64 lib + 32 lib + Goverlay Settings 
@@ -45,24 +45,12 @@ install_game() {
 
     echo "                       [----------------- Bottles GUI Container ----------------]"
     # Install Bottles Container for Linux Games and Programs.
-    yay -S --noconfirm bottles && echo "Bottles package installed."
+    paru -S --noconfirm bottles && echo "Bottles package installed."
 
-    # Install Custom Wine TKG
-    echo "                       [----------------- WineTKG ----------------]"
-    git clone https://github.com/Frogging-Family/wine-tkg-git
-    cd wine-tkg-git
-    cd wine-tkg-git
-
-    echo "                       [----------------- Compiling Wine TKG  ----------------]"
-    makepkg -si --noconfirm && echo "Wine-TKG package installed."
-
-
-    # Cleaning downloaded files for extra space
-    cd ..
-    rm -rf wine-tkg-git
+    sudo pacman -S --noconfirm wine
 
     # Booting wine with first setup and creating Mono Instance
-    echo "Prepearing WINE for user ......"
+    echo "Prepearing WINE ..  Instaling Mono Engine for user in enviroment ......"
     sleep 5
 
     winecfg
@@ -70,8 +58,6 @@ install_game() {
     # Installing prefix and wine settings handler GUI / Winetricks
     echo "Installing Winetricks GUI control for wine prefixes...."
     sudo pacman -S --noconfirm winetricks
-
-
 
 
     # Print a message indicating that the installation is complete
