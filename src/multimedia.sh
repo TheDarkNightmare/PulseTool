@@ -19,17 +19,14 @@ install_multimedia() {
     echo -e "                       [\e[31m----------------- Core Packages ----------------\e[0m]"
     sudo pacman -S --noconfirm firefox discord kdenlive thunderbird
 
-    echo "                       [----------------- Video Capture Fix ----------------]"
-    sudo pacman -S --noconfirm xwaylandvideobridge
-
     echo "                       [----------------- Spotify ----------------]"
-    yay -S --noconfirm spotify
+    paru -S --noconfirm spotify
 
     echo "                       [----------------- Media Codecs ----------------]"
     sudo pacman -S --noconfirm x265 x264 svt-av1 libmpeg2 libvpx gst-plugins-ugly gst-plugins-va
 
     echo "                       [----------------- Image Programs ----------------]"
-    sudo pacman -S --noconfirm gwenview gimp spectacle
+    sudo pacman -S --noconfirm gwenview gimp
 
     echo "                       Installation of Multimedia package complete."
 }
