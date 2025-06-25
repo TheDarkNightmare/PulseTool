@@ -10,12 +10,12 @@ install_cannon() {
     echo -e "                       \e[32m╰─────────────────────────────────────────────────╯\e[0m"
 
     # Install yay if not installed
-    install_yay
+    install_aur_systeminit
 
     echo "                       [----------------- Core Packages ----------------]"
 
     echo "Installing Cups and Gutenprint for basic Support..."
-    sudo pacman -Syu --noconfirm cups gutenprint
+    sudo pacman -Syu --noconfirm cups gutenprint ghostscript
 
     echo "                       [----------------- CUPS BJNP ----------------]"
     yay -S --noconfirm cups-bjnp
