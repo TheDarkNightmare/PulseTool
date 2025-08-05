@@ -17,7 +17,7 @@ private slots:
     void runMultimedia();
 
 private:
-    void runScript(const QString &scriptName);
+    void runFunction(const QString &functionName);
 };
 
 #endif // MAINWINDOW_H

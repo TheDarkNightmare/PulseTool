@@ -2,11 +2,7 @@
 
 # Source the style and function files
 source ./styles.sh
-source ./src/base-package.sh
-source ./src/multimedia.sh
-source ./src/cannon.sh
-source ./src/game.sh
-source ./src/fastfetch.sh
+source ./src/pulse-functions.sh
 
 # Display the title
 #echo -e "$TITLE"
