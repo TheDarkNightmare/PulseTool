@@ -1,8 +1,10 @@
 #include "MainWindow.h"
 
 #include <QCoreApplication>
+#include <QApplication>
 #include <QMessageBox>
 #include <QProcess>
+#include <QProgressDialog>
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QWidget>
@@ -37,47 +39,65 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowTitle(tr("PulseTool GUI"));
 }
 
-void MainWindow::runScript(const QString &scriptName)
+void MainWindow::runFunction(const QString &functionName)
 {
-    QString scriptPath = QCoreApplication::applicationDirPath() + "/../" + scriptName;
+    QString scriptPath = QCoreApplication::applicationDirPath() + "/../src/pulse-functions.sh";
 
     QProcess process;
     process.setProgram("bash");
-    process.setArguments({scriptPath});
+    process.setArguments({scriptPath, functionName});
+
+    QProgressDialog progress(tr("Running %1...").arg(functionName), tr("Cancel"), 0, 0, this);
+    progress.setWindowModality(Qt::WindowModal);
+    progress.show();
+
     process.start();
     if (!process.waitForStarted()) {
-        QMessageBox::warning(this, tr("Error"), tr("Failed to start %1").arg(scriptName));
+        progress.close();
+        QMessageBox::warning(this, tr("Error"), tr("Failed to start %1").arg(functionName));
         return;
     }
-    process.waitForFinished(-1);
 
-    QString output = process.readAllStandardOutput();
-    QString errorOutput = process.readAllStandardError();
-    QMessageBox::information(this, tr("Finished"), output + errorOutput);
+    while (process.state() == QProcess::Running) {
+        qApp->processEvents();
+        if (progress.wasCanceled()) {
+            process.kill();
+            process.waitForFinished();
+            QMessageBox::information(this, tr("Canceled"), tr("%1 was canceled").arg(functionName));
+            return;
+        }
+    }
+    progress.close();
+
+    if (process.exitStatus() != QProcess::NormalExit || process.exitCode() != 0) {
+        QMessageBox::critical(this, tr("Error"), QString::fromLocal8Bit(process.readAllStandardError()));
+    } else {
+        QMessageBox::information(this, tr("Finished"), QString::fromLocal8Bit(process.readAllStandardOutput()));
+    }
 }
 
 void MainWindow::runBasePackage()
 {
-    runScript("base-package.sh");
+    runFunction("install_base_package");
 }
 
 void MainWindow::runCannon()
 {
-    runScript("cannon.sh");
+    runFunction("install_cannon");
 }
 
 void MainWindow::runFastFetch()
 {
-    runScript("fastfetch.sh");
+    runFunction("install_fastfetch");
 }
 
 void MainWindow::runGame()
 {
-    runScript("game.sh");
+    runFunction("install_game");
 }
 
 void MainWindow::runMultimedia()
 {
-    runScript("multimedia.sh");
+    runFunction("install_multimedia");
 }
 
