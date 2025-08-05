@@ -1,5 +1,13 @@
 #!/bin/bash
 
+get_current_resolution() {
+    if [ -n "$WAYLAND_DISPLAY" ] && command -v wlr-randr >/dev/null 2>&1; then
+        wlr-randr --current | awk '/\*/ {print $1; exit}'
+    elif command -v xrandr >/dev/null 2>&1; then
+        xrandr | awk '/\*/ {print $1; exit}'
+    fi
+}
+
 install_fastfetch() {
     echo -e "                       \e[34m╭─────────────────────────────────────────────────╮\e[0m"
     echo -e "                       \e[34m|                                                 |\e[0m"
@@ -8,6 +16,9 @@ install_fastfetch() {
     echo -e "                       \e[34m|                                                 |\e[0m"
     echo -e "                       \e[34m|                                                 |\e[0m"
     echo -e "                       \e[34m╰─────────────────────────────────────────────────╯\e[0m"
+
+    current_res="$(get_current_resolution)"
+    [ -n "$current_res" ] && echo "Current display resolution: $current_res"
 
     # Update the package database and install FastFetch
     sudo pacman -Syu --noconfirm fastfetch
